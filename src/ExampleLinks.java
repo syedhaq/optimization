@@ -14,6 +14,7 @@ public class ExampleLinks {
 		delay=exampleBB.get(4);
 		numberoflinks=Double.valueOf(exampleBB.get(6));
 		link=new String[numberoflinks.intValue()];
+		
 		for(int i=7;i<(7+link.length);i++){
 			link[i-7]=exampleBB.get(i);
 		}
@@ -40,6 +41,10 @@ public class ExampleLinks {
 	
 	public double gettime(){
 		return Double.parseDouble(delay);
+	}
+	
+	public String[]getLinks(){
+		return link;
 	}
 	
 	

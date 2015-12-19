@@ -33,7 +33,7 @@ public class Excelextract {
 
 			// Iterate through each rows one by one
 			Iterator<Row> rowIterator = sheet.iterator();
-			
+			ArrayList<Optical_backbone_links>allLinks=new ArrayList<Optical_backbone_links>();
 			while (rowIterator.hasNext()) {
 				Row row = rowIterator.next();
 				// For each row, iterate through all the columns
@@ -53,19 +53,20 @@ public class Excelextract {
 				
 				//System.out.println("");
 				Optical_backbone_links link1=new Optical_backbone_links(rowcell);
+				allLinks.add(link1);
 				graph.addElements(link1);
 				
 			}
 			//Add edgetobackbone
 			Iterator<Row> ebIterator=eb.iterator();
-			
+			ArrayList<edgetoBB>edgetoback=new ArrayList<edgetoBB>();
 			while (ebIterator.hasNext()) {
 				Row row = ebIterator.next();
 				// For each row, iterate through all the columns
 				Iterator<Cell> cellIterator = row.cellIterator();
 				//Create String Array for each row
 				ArrayList<String> rowcell = new ArrayList<String>();
-				ArrayList<edgetoBB>edgetoback=new ArrayList<edgetoBB>();
+				
 				while (cellIterator.hasNext()) {
 					Cell cell = cellIterator.next();
 					rowcell.add(cell.toString());
@@ -115,6 +116,7 @@ public class Excelextract {
 			
 			//Add traffic
 			Iterator<Row>trit=traffic.iterator();
+			ArrayList<Traffic>allTraffic=new ArrayList<Traffic>();
 			while (trit.hasNext()) {
 				Row row = trit.next();
 				// For each row, iterate through all the columns
@@ -134,7 +136,8 @@ public class Excelextract {
 				
 				//System.out.println("");
 				Traffic tr1=new Traffic(rowcell);
-				System.out.println(tr1.getSource());
+				allTraffic.add(tr1);
+				//System.out.println(tr1.getSource());
 				//Only get 0 traffic for now
 				if(tr1.getHour()!=0){
 					break;
@@ -145,9 +148,13 @@ public class Excelextract {
 				
 			}
 			
-			//graph.Kruskalimplement();
-			//graph.printElements();
+				
+			graph.Kruskalimplement();
+			graph.printElements();
 			file.close();
+			
+			//Assign traffic to links
+			sumlinks.addtraffic(allTraffic,links,edgetoback,allLinks);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
