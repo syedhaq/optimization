@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-
 public class edgetoBB {
 	private String linkname,end1,end2,distance,time;
 	private double traffic;
@@ -12,17 +11,19 @@ public class edgetoBB {
 		distance=edgebb.get(3);
 		time=edgebb.get(4);
 		traffic=0;
+		//Fix
+		
 	}
 	public String getLinkname(){
 		return linkname;
 	}
 	
-	public String getnode1(){
-		return end1;
+	public Edgerouter getnode1(){
+		return new Edgerouter(end1);
 	}
 	
-	public String getnode2(){
-		return end2;
+	public Backbone getnode2(){
+		return new Backbone(end2);
 	}
 	
 	public double getdistance(){
@@ -38,6 +39,7 @@ public class edgetoBB {
 		this.traffic=traffic+intraffic;
 		
 	}
+	
 	
 	
 

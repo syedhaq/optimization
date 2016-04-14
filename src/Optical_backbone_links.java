@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 
 public class Optical_backbone_links {
-	private String linkname,node1,node2, distance,time;
+	private String linkname,distance,time, node1,node2;
 	private double traffic;
 	
 	
@@ -22,12 +22,12 @@ public class Optical_backbone_links {
 		return linkname;
 	}
 	
-	public String getnode1(){
-		return node1;
+	public Node getnode1(){
+		return new Node(node1);
 	}
 	
-	public String getnode2(){
-		return node2;
+	public Node getnode2(){
+		return new Node(node2);
 	}
 	
 	public double getdistance(){
