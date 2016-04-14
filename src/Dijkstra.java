@@ -13,8 +13,8 @@ public class Dijkstra {
 		
 		if(!pathInfo.containsKey(start)){
 			
-			pathInfo.put(start, new HashMap<>());
-			cost.put(start, new HashMap<>());
+			pathInfo.put(start, new HashMap<Node,ArrayList<Node>>());
+			cost.put(start, new HashMap<Node,Double>());
 		}
 		heap.add(start,0);
 		cost.get(start).put(start, (double) 0);
@@ -23,22 +23,22 @@ public class Dijkstra {
 		while(!heap.isEmpty()){
 			Node node = heap.poll();
 		
-			for(Edge edge : node.vertice){
-				double totalcost = cost.get(start).get(node) + edge.cost;
+			for(Edge edge : node.getNeighbors()){
+				double totalcost = cost.get(start).get(node) + edge.getCost();
 				ArrayList<Node> path = new ArrayList<>(pathInfo.get(start).get(node));
-				path.add(edge.end);
+				path.add(edge.getEnd());
 				
-				if(!cost.get(start).containsKey(edge.end)){
-					heap.add(edge.end, totalcost);
-					cost.get(start).put(edge.end, totalcost);
+				if(!cost.get(start).containsKey(edge.getEnd())){
+					heap.add(edge.getEnd(), totalcost);
+					cost.get(start).put(edge.getEnd(), totalcost);
 					//pathInfo.get(start).put(edge.end, new ArrayList<Node>(pathInfo.get(start).get(node)));
-					pathInfo.get(start).put(edge.end, path);
+					pathInfo.get(start).put(edge.getEnd(), path);
 					
 				}else{
-					if(totalcost < cost.get(start).get(edge.end)){
-						heap.updatePriority(edge.end, totalcost);
-						cost.get(start).put(edge.end, totalcost);
-						pathInfo.get(start).put(edge.end, path);
+					if(totalcost < cost.get(start).get(edge.getEnd())){
+						heap.updatePriority(edge.getEnd(), totalcost);
+						cost.get(start).put(edge.getEnd(), totalcost);
+						pathInfo.get(start).put(edge.getEnd(), path);
 					}
 				}	
 			}

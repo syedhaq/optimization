@@ -4,7 +4,7 @@ public class Node {
   
   private String name;
   private int blocation;
-  private ArrayList<Edge>neighbors=new ArrayList<Edge>();
+  private ArrayList<Edge> neighbors=new ArrayList<Edge>();
   
   
   
