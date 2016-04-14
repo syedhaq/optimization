@@ -46,6 +46,7 @@ public class Dijkstra {
 	}
 	
 	public static void ospf(ArrayList<Node> nodelist){
+
 		for(Node n : nodelist){
 			dijkstra(n);
 		}

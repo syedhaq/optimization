@@ -188,6 +188,10 @@ public class Excelextract {
 				Node neighbor=allNodes.get(rowcell.get(2));
 				nodetoadd.addNeighbors(new Edge(neighbor,Double.parseDouble(rowcell.get(3)),Double.parseDouble(rowcell.get(4))));
 				
+				
+				
+				
+				
 				//System.out.println("");
 				//graph.addElements(link1);
 				
@@ -201,6 +205,9 @@ public class Excelextract {
 			
 			//Assign traffic to links
 			sumlinks.addtraffic(allTraffic,edgetoback,allNodes);
+			Dijkstra.ospf(new ArrayList<Node>(allNodes.values()));
+			
+			System.out.println("1 " + Dijkstra.cost.get(allNodes.get("O6")).get(allNodes.get("O11")));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
