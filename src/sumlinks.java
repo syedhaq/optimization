@@ -8,11 +8,14 @@ import java.util.Map;
 //Takes a traffic object and assigns its traffic to capacity
 public class sumlinks {
 	
+	private static double cost=0;
+	static HashMap<String, Edge> usedEdges = new HashMap<>();
+	
 	
 	public static void addtraffic(ArrayList<Traffic> allTraffic,
 			ArrayList<edgetoBB> edgetoback,
-			 HashMap<String, Node> allNodes) {
-		double cost=0;
+			 HashMap<String, Node> allNodes,HashMap<String, Edge> allEdgelinks) {
+		
 		ArrayList<Node>srcnodes=new ArrayList<Node>();
 		ArrayList<Node>dstnodes=new ArrayList<Node>();
 		for(Traffic tr1:allTraffic){
@@ -87,7 +90,9 @@ public class sumlinks {
 			}
 			
 			
-			cost+=mincost(srcnodes,dstnodes,allNodes);
+			mincost(srcnodes,dstnodes,allNodes,tr1,allEdgelinks);
+			
+
 			
 			
 			
@@ -109,14 +114,27 @@ public class sumlinks {
 		
 	}
 		System.out.println(cost);
+		System.out.println(usedEdges.isEmpty());
+		Map<String,Edge> allEdgemap = usedEdges;
+		
+
+		for (Map.Entry<String,Edge> entry : allEdgemap.entrySet()) {
+		    String key = entry.getKey();
+		    Edge edgeit = entry.getValue();
+		    
+		    System.out.println(key);
+		    	
+			}
 		
      	
 	}
 	
-	public static double mincost(ArrayList<Node>srcnodes,ArrayList<Node>dstnodes,HashMap<String, Node> allNodes){
+	public static void mincost(ArrayList<Node>srcnodes,ArrayList<Node>dstnodes,HashMap<String, Node> allNodes,Traffic tr1, HashMap<String, Edge> allEdgelinks){
 		
 		double mincost=Double.POSITIVE_INFINITY;
-		double cost=0;
+		Node minstart=null;
+		Node minend=null;
+		double pathcost=0;
 		for (Node srcnode:srcnodes){
 			
 			
@@ -125,11 +143,12 @@ public class sumlinks {
 				//Check if within same location
 				
 				if(srcnode.getBlocation()==dstnode.getBlocation()){
-					return 50;
+					cost+=50;
+					return ;
 				}
 				
 				try{
-				 cost=Dijkstra.cost.get(allNodes.get(srcnode.getName())).get(allNodes.get(dstnode.getName()));
+				 pathcost=Dijkstra.cost.get(allNodes.get(srcnode.getName())).get(allNodes.get(dstnode.getName()));
 				} catch(NullPointerException n){
 					System.out.println("No paths found error");
 					System.out.println(srcnode.getName()+" "+dstnode.getName());
@@ -137,8 +156,10 @@ public class sumlinks {
 				}
 				
 				
-				if (cost<mincost){
-					mincost=cost;
+				if (pathcost<mincost){
+					mincost=pathcost;
+					minstart=srcnode;
+					minend=dstnode;
 				}
 				
 				
@@ -147,7 +168,41 @@ public class sumlinks {
 			}
 			
 		}
-		return (100+0.1*mincost);
+		//Nodes in different backbones, add all edges between two nodes to usedEdges
+		
+		ArrayList<Node>path=new ArrayList<Node>();
+		path=Dijkstra.pathInfo.get(allNodes.get(minstart.getName())).get(allNodes.get(minend.getName()));
+		for(int i=0;i<path.size()-1;i++){
+			if (i==0){
+				if (usedEdges.containsKey(minstart.getName()+path.get(i).getName())){
+					//Get link and set Traffic in edge
+					usedEdges.get(minstart.getName()+path.get(i).getName()).setTraffic(tr1);
+				}
+				else{
+					//Assign traffic to edge and put in used edge
+					usedEdges.put(minstart.getName()+path.get(i).getName(), allEdgelinks.get(minstart.getName()+path.get(i).getName()).setTraffic(tr1));
+					
+					
+				}
+			}
+			
+			else{
+				if (usedEdges.containsKey(path.get(i).getName()+path.get(i+1).getName())){
+					//Get link and set Traffic in edge
+					usedEdges.get(path.get(i).getName()+path.get(i+1).getName()).setTraffic(tr1);
+				}
+				else{
+					//Add edge to used links
+					usedEdges.put(path.get(i).getName()+path.get(i+1).getName(), allEdgelinks.get(path.get(i).getName()+path.get(i+1).getName()).setTraffic(tr1));
+					
+					
+				}
+				
+			}
+		}
+		System.out.println(usedEdges.isEmpty());
+		
+		return ;
 	}
 
 		

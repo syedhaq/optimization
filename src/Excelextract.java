@@ -20,6 +20,7 @@ public class Excelextract {
 		ArrayList<Traffic>allTraffic=new ArrayList<Traffic>();
 		//ArrayList<Node>allNodes=new ArrayList<Node>();
 		HashMap<String, Node> allNodes = new HashMap<>();
+		HashMap<String,Edge> allEdgelinks=new HashMap<>();
 		//Make new Graphmaker
 		//GraphMaker graph=new GraphMaker();
 		try {
@@ -186,8 +187,12 @@ public class Excelextract {
 				
 				Node nodetoadd=allNodes.get(rowcell.get(1));
 				Node neighbor=allNodes.get(rowcell.get(2));
-				nodetoadd.addNeighbors(new Edge(neighbor,Double.parseDouble(rowcell.get(3)),Double.parseDouble(rowcell.get(4))));
-				neighbor.addNeighbors(new Edge(nodetoadd,Double.parseDouble(rowcell.get(3)),Double.parseDouble(rowcell.get(4))));
+				Edge forward=new Edge(nodetoadd,neighbor,Double.parseDouble(rowcell.get(3)),Double.parseDouble(rowcell.get(4)));
+				allEdgelinks.put(nodetoadd.getName()+neighbor.getName(), forward);
+				Edge backward=new Edge(neighbor,nodetoadd,Double.parseDouble(rowcell.get(3)),Double.parseDouble(rowcell.get(4)));
+				allEdgelinks.put(neighbor.getName()+nodetoadd.getName(), backward);
+				nodetoadd.addNeighbors(forward);
+				neighbor.addNeighbors(backward);
 				
 				
 				
@@ -205,7 +210,12 @@ public class Excelextract {
 			
 			//Assign traffic to links
 			Dijkstra.ospf(new ArrayList<Node>(allNodes.values()));
-			sumlinks.addtraffic(allTraffic,edgetoback,allNodes);
+			sumlinks.addtraffic(allTraffic,edgetoback,allNodes,allEdgelinks);
+			ArrayList<Node>path=new ArrayList<Node>();
+			 path=Dijkstra.pathInfo.get(allNodes.get("O6")).get(allNodes.get("O11"));
+			for(Node n:path){
+				System.out.println(n.getName());
+			}
 			
 			
 			
