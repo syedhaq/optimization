@@ -204,11 +204,12 @@ public class Excelextract {
 			file.close();
 			
 			//Assign traffic to links
-			sumlinks.addtraffic(allTraffic,edgetoback,allNodes);
 			Dijkstra.ospf(new ArrayList<Node>(allNodes.values()));
-			for(int i = 1; i < 39; i++ ){
-				System.out.println(i +"  " + Dijkstra.cost.get(allNodes.get("O33")).get(allNodes.get("O"+i)));
-			}
+			sumlinks.addtraffic(allTraffic,edgetoback,allNodes);
+			
+			
+			
+			
 			
 			
 		} catch (Exception e) {
