@@ -52,32 +52,13 @@ public class sumlinks {
 				for (Map.Entry<String,Node> entry : map.entrySet()) {
 				    String key = entry.getKey();
 				    Node nodeit = entry.getValue();
-				    if(nodeit.getBlocation()==srclcn){
+				    
+				    if(nodeit.getBlocation()==srclcn && srclcn!=0 && !srcnodes.contains(nodeit)){
 				    	//one of the source nodes
 				    	srcnodes.add(nodeit);
 				    	
-					}
-				  
-				    
-				    
-				    
-				    
-				}
-			
-			}
-			for(Backbone dst:dstBB){
-				//System.out.println(src.getname());
-				//System.out.println(src.getlocation());
-				int dstlcn=dst.getlocation();
-				Map<String,Node> map = allNodes;
-				
-
-				for (Map.Entry<String,Node> entry : map.entrySet()) {
-				    String key = entry.getKey();
-				    Node nodeit = entry.getValue();
-				    if(nodeit.getBlocation()==dstlcn){
-				    	//one of the destination nodes
-				    	dstnodes.add(nodeit);
+				    	System.out.println(nodeit.getBlocation()+" " +srclcn);
+				    	System.out.println("Adding node"+nodeit.getName()+"for backbone"+src.getname());
 				    	
 					}
 				  
@@ -88,21 +69,46 @@ public class sumlinks {
 				}
 			
 			}
+						for(Backbone dst:dstBB){
+							//System.out.println(src.getname());
+							//System.out.println(src.getlocation());
+							int dstlcn=dst.getlocation();
+							Map<String,Node> map = allNodes;
+							
 			
+							for (Map.Entry<String,Node> entry : map.entrySet()) {
+							    String key = entry.getKey();
+							    Node nodeit = entry.getValue();
+							    if(nodeit.getBlocation()==dstlcn && dstlcn!=0){
+							    	//one of the destination nodes
+							    	dstnodes.add(nodeit);
+							    	
+								}
+							  
+							    
+							    
+							    
+							    
+							}
+						
+						}
+						
+			System.out.println("sNodes for "+tr1.getTunit());			
+			for (Node scrnode:srcnodes){
+				
+				System.out.print(scrnode.getName());
+				
+			}
 			
-			mincost(srcnodes,dstnodes,allNodes,tr1,allEdgelinks);
-			
-
-			
-			
-			
-			
-			
-			
-			//Find route of traffic from example links and optical links
-			//Assign traffic to optical links
-			
-			
+			System.out.println();
+			System.out.println("dNodes for "+tr1.getTunit());
+			for (Node dstnode:dstnodes){
+				
+				//System.out.print(dstnode.getName());
+				
+			}
+			System.out.println();
+			//mincost(srcnodes,dstnodes,allNodes,tr1,allEdgelinks);
 			
 				
 
@@ -144,6 +150,7 @@ public class sumlinks {
 				
 				if(srcnode.getBlocation()==dstnode.getBlocation()){
 					cost+=50;
+					System.out.println(srcnode.getName()+" "+dstnode.getName());
 					return ;
 				}
 				
@@ -200,6 +207,7 @@ public class sumlinks {
 				
 			}
 		}
+		
 		System.out.println(usedEdges.isEmpty());
 		
 		return ;
