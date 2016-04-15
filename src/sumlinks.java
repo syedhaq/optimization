@@ -16,9 +16,10 @@ public class sumlinks {
 			ArrayList<edgetoBB> edgetoback,
 			 HashMap<String, Node> allNodes,HashMap<String, Edge> allEdgelinks) {
 		
-		ArrayList<Node>srcnodes=new ArrayList<Node>();
-		ArrayList<Node>dstnodes=new ArrayList<Node>();
+		
 		for(Traffic tr1:allTraffic){
+			ArrayList<Node>srcnodes=new ArrayList<Node>();
+			ArrayList<Node>dstnodes=new ArrayList<Node>();
 			//Find BackBone Location of Source and destination
 			ArrayList<Backbone>srcBB=new ArrayList<Backbone>();
 			ArrayList<Backbone>dstBB=new ArrayList<Backbone>();
@@ -51,12 +52,9 @@ public class sumlinks {
 				
 				Map<String,Node> map = allNodes;
 				
-
-				for (Map.Entry<String,Node> entry : map.entrySet()) {
-				    String key = entry.getKey();
-				    Node nodeit = entry.getValue();
-				    
-				    if(nodeit.getBlocation()==srclcn && srclcn!=0 && !srcnodes.contains(nodeit)){
+				
+				for(Node nodeit : map.values()){
+					if(nodeit.getBlocation()==srclcn && srclcn!=0 && !srcnodes.contains(nodeit)){
 				    	//one of the source nodes
 				    	System.out.println("yo");
 				    	srcnodes.add(nodeit);
@@ -65,12 +63,24 @@ public class sumlinks {
 				    	System.out.println("Adding node"+nodeit.getName()+"for backbone"+src.getname());
 				    	
 					}
-				  
-				    
-				    
-				    
-				    
 				}
+
+//				for (Map.Entry<String,Node> entry : map.entrySet()) {
+//				    String key = entry.getKey();
+//				    Node nodeit = entry.getValue();
+//				    
+//				    if(nodeit.getBlocation()==srclcn && srclcn!=0 && !srcnodes.contains(nodeit)){
+//				    	//one of the source nodes
+//				    	System.out.println("yo");
+//				    	srcnodes.add(nodeit);
+//				    	
+//				    	System.out.println(nodeit.getBlocation()+" " +srclcn);
+//				    	System.out.println("Adding node"+nodeit.getName()+"for backbone"+src.getname());
+//				    	
+//					}
+				  				    
+				    
+//				}
 			
 			}
 						for(Backbone dst:dstBB){
@@ -114,7 +124,7 @@ public class sumlinks {
 				
 			}
 			//System.out.println();
-			//mincost(srcnodes,dstnodes,allNodes,tr1,allEdgelinks);
+			mincost(srcnodes,dstnodes,allNodes,tr1,allEdgelinks);
 			
 				
 
