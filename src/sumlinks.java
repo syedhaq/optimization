@@ -43,9 +43,12 @@ public class sumlinks {
 			//Find connected nodes to backbone
 			
 			for(Backbone src:srcBB){
+				
+				System.out.println("Src"+src.getname()+" ,"+ src.getlocation());
 				//System.out.println(src.getname());
 				//System.out.println(src.getlocation());
 				int srclcn=src.getlocation();
+				
 				Map<String,Node> map = allNodes;
 				
 
@@ -55,6 +58,7 @@ public class sumlinks {
 				    
 				    if(nodeit.getBlocation()==srclcn && srclcn!=0 && !srcnodes.contains(nodeit)){
 				    	//one of the source nodes
+				    	System.out.println("yo");
 				    	srcnodes.add(nodeit);
 				    	
 				    	System.out.println(nodeit.getBlocation()+" " +srclcn);
@@ -70,6 +74,8 @@ public class sumlinks {
 			
 			}
 						for(Backbone dst:dstBB){
+							System.out.println("Dst"+dst.getname()+" ,"+ dst.getlocation());
+
 							//System.out.println(src.getname());
 							//System.out.println(src.getlocation());
 							int dstlcn=dst.getlocation();
@@ -79,7 +85,7 @@ public class sumlinks {
 							for (Map.Entry<String,Node> entry : map.entrySet()) {
 							    String key = entry.getKey();
 							    Node nodeit = entry.getValue();
-							    if(nodeit.getBlocation()==dstlcn && dstlcn!=0){
+							    if(nodeit.getBlocation()==dstlcn && dstlcn!=0 && !dstnodes.contains(nodeit)){
 							    	//one of the destination nodes
 							    	dstnodes.add(nodeit);
 							    	
@@ -104,10 +110,10 @@ public class sumlinks {
 			System.out.println("dNodes for "+tr1.getTunit());
 			for (Node dstnode:dstnodes){
 				
-				//System.out.print(dstnode.getName());
+				System.out.print(dstnode.getName());
 				
 			}
-			System.out.println();
+			//System.out.println();
 			//mincost(srcnodes,dstnodes,allNodes,tr1,allEdgelinks);
 			
 				
