@@ -12,7 +12,7 @@ public class sumlinks {
 	static HashMap<String, Edge> usedEdges = new HashMap<>();
 	
 	
-	public static void addtraffic(ArrayList<Traffic> allTraffic,
+	public static HashMap<String,Edge> addtraffic(ArrayList<Traffic> allTraffic,
 			ArrayList<edgetoBB> edgetoback,
 			 HashMap<String, Node> allNodes,HashMap<String, Edge> allEdgelinks) {
 		
@@ -165,6 +165,8 @@ public class sumlinks {
 			}
 		
 		System.out.println("Overall cost of network is:"+cost);
+		
+		return usedEdges;
 		
      	
 	}
