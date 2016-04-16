@@ -45,7 +45,7 @@ public class sumlinks {
 			
 			for(Backbone src:srcBB){
 				
-				System.out.println("Src"+src.getname()+" ,"+ src.getlocation());
+				//System.out.println("Src"+src.getname()+" ,"+ src.getlocation());
 				//System.out.println(src.getname());
 				//System.out.println(src.getlocation());
 				int srclcn=src.getlocation();
@@ -56,11 +56,11 @@ public class sumlinks {
 				for(Node nodeit : map.values()){
 					if(nodeit.getBlocation()==srclcn && srclcn!=0 && !srcnodes.contains(nodeit)){
 				    	//one of the source nodes
-				    	System.out.println("yo");
+				    	//System.out.println("yo");
 				    	srcnodes.add(nodeit);
 				    	
-				    	System.out.println(nodeit.getBlocation()+" " +srclcn);
-				    	System.out.println("Adding node"+nodeit.getName()+"for backbone"+src.getname());
+				    	//System.out.println(nodeit.getBlocation()+" " +srclcn);
+				    	//System.out.println("Adding node"+nodeit.getName()+"for backbone"+src.getname());
 				    	
 					}
 				}
@@ -84,7 +84,7 @@ public class sumlinks {
 			
 			}
 						for(Backbone dst:dstBB){
-							System.out.println("Dst"+dst.getname()+" ,"+ dst.getlocation());
+							//System.out.println("Dst"+dst.getname()+" ,"+ dst.getlocation());
 
 							//System.out.println(src.getname());
 							//System.out.println(src.getlocation());
@@ -109,21 +109,21 @@ public class sumlinks {
 						
 						}
 						
-			System.out.println("sNodes for "+tr1.getTunit());			
-			for (Node scrnode:srcnodes){
-				
-				System.out.print(scrnode.getName());
-				
-			}
-			
-			System.out.println();
-			System.out.println("dNodes for "+tr1.getTunit());
-			for (Node dstnode:dstnodes){
-				
-				System.out.print(dstnode.getName());
-				
-			}
-			//System.out.println();
+			//System.out.println("sNodes for "+tr1.getTunit());			
+//			for (Node scrnode:srcnodes){
+//				
+//				System.out.print(scrnode.getName());
+//				
+//			}
+//			
+//			System.out.println();
+//			System.out.println("dNodes for "+tr1.getTunit());
+//			for (Node dstnode:dstnodes){
+//				
+//				System.out.print(dstnode.getName());
+//				
+//			}
+//			//System.out.println();
 			mincost(srcnodes,dstnodes,allNodes,tr1,allEdgelinks);
 			
 				
@@ -135,18 +135,36 @@ public class sumlinks {
 			
 		
 	}
-		System.out.println(cost);
-		System.out.println(usedEdges.isEmpty());
+		//System.out.println(cost);
+		//System.out.println(usedEdges.isEmpty());
 		Map<String,Edge> allEdgemap = usedEdges;
 		
 
 		for (Map.Entry<String,Edge> entry : allEdgemap.entrySet()) {
 		    String key = entry.getKey();
 		    Edge edgeit = entry.getValue();
+		    double Totaltraffic = 0;
+		    for(Traffic tr:edgeit.getTraffic()){
+		    	//Get both priority 1 and priority two traffic
+		    	Totaltraffic+=tr.getP1()+tr.getP2();
+		    	
+		    }
+		    
+		    Totaltraffic=Totaltraffic/1000;//convert to Mbps and assign to nearest 100 gbps
+		    int rounded=(int)Totaltraffic;
+		    edgeit.setCapacity(rounded);
+		    rounded =  (((rounded + 99) / 100 ) * 100);
+		    cost+=(rounded/100)*(100+0.1*edgeit.getCost());
+		    
+		    
 		    
 		    System.out.println(key);
+		    System.out.println("Traffic:"+Totaltraffic);
+		    System.out.println("Capacity assigned:"+rounded);
 		    	
 			}
+		
+		System.out.println("Overall cost of network is:"+cost);
 		
      	
 	}
@@ -166,7 +184,7 @@ public class sumlinks {
 				
 				if(srcnode.getBlocation()==dstnode.getBlocation()){
 					cost+=50;
-					System.out.println(srcnode.getName()+" "+dstnode.getName());
+					//System.out.println(srcnode.getName()+" "+dstnode.getName());
 					return ;
 				}
 				
@@ -224,7 +242,7 @@ public class sumlinks {
 			}
 		}
 		
-		System.out.println(usedEdges.isEmpty());
+		//System.out.println(usedEdges.isEmpty());
 		
 		return ;
 	}

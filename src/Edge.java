@@ -7,6 +7,7 @@ public class Edge {
 	private double cost;
 	private double time;
 	private ArrayList<Traffic> trafar=new ArrayList<Traffic>();
+	private int capacity;
 	
 	
 	public Edge(Node startnode,Node endnode,double costn,double time){
@@ -60,6 +61,14 @@ public class Edge {
 		//Adds traffic to edge and returns edge
 		return this;
 		
+	}
+
+	public int getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 	
 	

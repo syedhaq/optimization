@@ -212,7 +212,7 @@ public class Excelextract {
 			Dijkstra.ospf(new ArrayList<Node>(allNodes.values()));
 			sumlinks.addtraffic(allTraffic,edgetoback,allNodes,allEdgelinks);
 			ArrayList<Node>path=new ArrayList<Node>();
-			 path=Dijkstra.pathInfo.get(allNodes.get("O6")).get(allNodes.get("O11"));
+			 //path=Dijkstra.pathInfo.get(allNodes.get("O6")).get(allNodes.get("O11"));
 			for(Node n:path){
 				System.out.println(n.getName());
 			}
