@@ -8,6 +8,8 @@ public class Edge {
 	private double time;
 	private ArrayList<Traffic> trafar=new ArrayList<Traffic>();
 	private int capacity;
+	private double trafficp1;
+	private double trafficp2;
 	
 	
 	public Edge(Node startnode,Node endnode,double costn,double time){
@@ -71,8 +73,24 @@ public class Edge {
 		this.capacity = capacity;
 	}
 	
+	public double getTrafficp1(){
+		trafficp1=0; 
+		for(Traffic tr:this.getTraffic()){
+	    	//Get both priority 1 and priority two traffic
+	    	trafficp1+=tr.getP1();
+	    	
+	    }
+		return trafficp1/1000;
+		
+	}
+	public double getTrafficp2(){
+		trafficp2=0; 
+		for(Traffic tr:this.getTraffic()){
+	    	//Get both priority 1 and priority two traffic
+	    	trafficp2+=tr.getP2();
+	    	
+	    }
+		return trafficp2/1000;
 	
-
-
-
+	                           }
 }

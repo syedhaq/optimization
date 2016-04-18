@@ -1,0 +1,367 @@
+O6O7
+Traffic:185.62535593674832
+Capacity assigned:200
+O20O2
+Traffic:219.97223798108422
+Capacity assigned:300
+O9O20
+Traffic:511.5540818073098
+Capacity assigned:600
+O6O4
+Traffic:531.6121739208078
+Capacity assigned:600
+O26O2
+Traffic:176.8532666418933
+Capacity assigned:200
+O20O9
+Traffic:92.50681981756074
+Capacity assigned:100
+O34O17
+Traffic:535.3930078120578
+Capacity assigned:600
+O14O33
+Traffic:78.40215429202193
+Capacity assigned:100
+O21O4
+Traffic:94.4569640757786
+Capacity assigned:100
+O21O3
+Traffic:26.498806563129854
+Capacity assigned:100
+O18O17
+Traffic:491.3680277892336
+Capacity assigned:500
+O2O30
+Traffic:179.44849871891378
+Capacity assigned:200
+O18O12
+Traffic:1.7320757999999998
+Capacity assigned:100
+O31O32
+Traffic:19.94077112365656
+Capacity assigned:100
+O32O31
+Traffic:543.0383561910904
+Capacity assigned:600
+O31O34
+Traffic:23.204940768415472
+Capacity assigned:100
+O37O15
+Traffic:14.684391327922945
+Capacity assigned:100
+O37O16
+Traffic:1359.848412923168
+Capacity assigned:1400
+O31O35
+Traffic:358.1410898424335
+Capacity assigned:400
+O37O19
+Traffic:477.79316945468145
+Capacity assigned:500
+O33O13
+Traffic:142.27041978244324
+Capacity assigned:200
+O13O9
+Traffic:660.7487849488255
+Capacity assigned:700
+O33O14
+Traffic:281.61563343475825
+Capacity assigned:300
+O33O11
+Traffic:121.34032771948267
+Capacity assigned:200
+O9O39
+Traffic:610.2428040055497
+Capacity assigned:700
+O1O12
+Traffic:359.350084369417
+Capacity assigned:400
+O1O10
+Traffic:19.522793740544678
+Capacity assigned:100
+O14O23
+Traffic:216.81357859075177
+Capacity assigned:300
+O24O40
+Traffic:910.784179416045
+Capacity assigned:1000
+O4O6
+Traffic:388.5164430925715
+Capacity assigned:400
+O32O18
+Traffic:335.77095780170805
+Capacity assigned:400
+O34O28
+Traffic:638.442440384566
+Capacity assigned:700
+O19O20
+Traffic:521.3544733453834
+Capacity assigned:600
+O34O31
+Traffic:72.90976344310438
+Capacity assigned:100
+O19O22
+Traffic:243.8876364528506
+Capacity assigned:300
+O7O15
+Traffic:78.6357356686404
+Capacity assigned:100
+O22O19
+Traffic:37.16165009872016
+Capacity assigned:100
+O23O14
+Traffic:688.7717105794557
+Capacity assigned:700
+O18O32
+Traffic:18.730011212119344
+Capacity assigned:100
+O23O20
+Traffic:242.22503938158636
+Capacity assigned:300
+O19O37
+Traffic:254.30698081417694
+Capacity assigned:300
+O4O15
+Traffic:439.20277196506146
+Capacity assigned:500
+O39O16
+Traffic:238.00352874679442
+Capacity assigned:300
+O9O13
+Traffic:1266.8383390008516
+Capacity assigned:1300
+O9O1
+Traffic:42.51491167533197
+Capacity assigned:100
+O8O29
+Traffic:338.4343902715188
+Capacity assigned:400
+O4O29
+Traffic:2604.0366690721557
+Capacity assigned:2700
+O8O25
+Traffic:703.3969293123046
+Capacity assigned:800
+O32O38
+Traffic:1.8551879269383558
+Capacity assigned:100
+O13O11
+Traffic:201.010128304002
+Capacity assigned:300
+O2O26
+Traffic:294.117828177319
+Capacity assigned:300
+O7O22
+Traffic:546.8225304486054
+Capacity assigned:600
+O9O14
+Traffic:219.59674815567007
+Capacity assigned:300
+O10O25
+Traffic:556.3410965460778
+Capacity assigned:600
+O6O27
+Traffic:240.36348265171284
+Capacity assigned:300
+O1O39
+Traffic:221.96068309488894
+Capacity assigned:300
+O2O20
+Traffic:744.4321313087908
+Capacity assigned:800
+O2O22
+Traffic:381.9890490901654
+Capacity assigned:400
+O27O40
+Traffic:127.57262633939044
+Capacity assigned:200
+O7O6
+Traffic:197.2422415006475
+Capacity assigned:200
+O4O21
+Traffic:34.5175326623466
+Capacity assigned:100
+O30O2
+Traffic:431.3403236341335
+Capacity assigned:500
+O17O18
+Traffic:282.1446305118957
+Capacity assigned:300
+O1O9
+Traffic:68.47714138183541
+Capacity assigned:100
+O11O33
+Traffic:385.0612947878197
+Capacity assigned:400
+O5O32
+Traffic:890.520262912159
+Capacity assigned:900
+O10O5
+Traffic:935.291834711006
+Capacity assigned:1000
+O25O10
+Traffic:887.1480127800473
+Capacity assigned:900
+O10O1
+Traffic:122.57653642183692
+Capacity assigned:200
+O38O36
+Traffic:208.18885282267473
+Capacity assigned:300
+O23O26
+Traffic:51.66451683822063
+Capacity assigned:100
+O38O35
+Traffic:24.642141350151814
+Capacity assigned:100
+O12O1
+Traffic:209.65405438628565
+Capacity assigned:300
+O40O30
+Traffic:621.2320453395155
+Capacity assigned:700
+O38O32
+Traffic:1.7320757999999998
+Capacity assigned:100
+O16O25
+Traffic:204.4939893491081
+Capacity assigned:300
+O28O11
+Traffic:1039.0358509675154
+Capacity assigned:1100
+O28O12
+Traffic:28.22192721387906
+Capacity assigned:100
+O17O34
+Traffic:594.173396575405
+Capacity assigned:600
+O40O37
+Traffic:746.4701824642682
+Capacity assigned:800
+O17O35
+Traffic:357.03128266024584
+Capacity assigned:400
+O12O18
+Traffic:162.31984806964496
+Capacity assigned:200
+O36O38
+Traffic:57.96699701956247
+Capacity assigned:100
+O32O5
+Traffic:518.1120643243394
+Capacity assigned:600
+O11O28
+Traffic:692.2907399528827
+Capacity assigned:700
+O29O8
+Traffic:306.9433494397436
+Capacity assigned:400
+O15O37
+Traffic:18.050247197840427
+Capacity assigned:100
+O13O33
+Traffic:130.45273359292256
+Capacity assigned:200
+O29O4
+Traffic:602.5819299300985
+Capacity assigned:700
+O3O5
+Traffic:113.73188874689622
+Capacity assigned:200
+O25O16
+Traffic:198.1472993060772
+Capacity assigned:200
+O27O24
+Traffic:126.40495348904128
+Capacity assigned:200
+O27O6
+Traffic:109.39526038259105
+Capacity assigned:200
+O35O17
+Traffic:583.6689561609021
+Capacity assigned:600
+O39O1
+Traffic:350.4578212661435
+Capacity assigned:400
+O5O3
+Traffic:14.205718327606013
+Capacity assigned:100
+O16O37
+Traffic:843.5445535227556
+Capacity assigned:900
+O12O28
+Traffic:203.75366147861803
+Capacity assigned:300
+O39O9
+Traffic:788.3831254782167
+Capacity assigned:800
+O16O39
+Traffic:1110.2434869640247
+Capacity assigned:1200
+O5O10
+Traffic:629.7682747172636
+Capacity assigned:700
+O11O13
+Traffic:637.2991974789245
+Capacity assigned:700
+O35O31
+Traffic:348.8865396713926
+Capacity assigned:400
+O30O40
+Traffic:233.03669773093532
+Capacity assigned:300
+O20O19
+Traffic:85.46857613772791
+Capacity assigned:100
+O15O4
+Traffic:96.87686600974253
+Capacity assigned:100
+O15O7
+Traffic:43.60305638701413
+Capacity assigned:100
+O24O27
+Traffic:671.8475905483309
+Capacity assigned:700
+O14O9
+Traffic:18.77254855603445
+Capacity assigned:100
+O37O40
+Traffic:216.50159838598685
+Capacity assigned:300
+O3O36
+Traffic:57.96699701956247
+Capacity assigned:100
+O28O34
+Traffic:937.455549241346
+Capacity assigned:1000
+O37O29
+Traffic:394.4383569892269
+Capacity assigned:400
+O22O7
+Traffic:60.45993927084306
+Capacity assigned:100
+O22O2
+Traffic:318.6748970602973
+Capacity assigned:400
+O40O24
+Traffic:165.69917343590853
+Capacity assigned:200
+O25O8
+Traffic:319.51002058327543
+Capacity assigned:400
+O35O38
+Traffic:0.7891421999999941
+Capacity assigned:100
+O26O23
+Traffic:47.961764352052995
+Capacity assigned:100
+O3O21
+Traffic:94.4569640757786
+Capacity assigned:100
+O20O23
+Traffic:573.6043184939182
+Capacity assigned:600
+O40O27
+Traffic:570.418680269102
+Capacity assigned:600
+Overall cost of network is:82072.0

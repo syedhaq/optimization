@@ -46,6 +46,10 @@ public void addNeighbors(Edge neighbor) {
 	neighbors.add(neighbor);
 }
 
+public boolean removeNeighbors(Edge neighbor){
+	return neighbors.remove(neighbor);
+}
+
 
 
 

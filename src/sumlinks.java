@@ -14,7 +14,7 @@ public class sumlinks {
 	
 	public static HashMap<String,Edge> addtraffic(ArrayList<Traffic> allTraffic,
 			ArrayList<edgetoBB> edgetoback,
-			 HashMap<String, Node> allNodes,HashMap<String, Edge> allEdgelinks) {
+			 HashMap<String, Node> allNodes,HashMap<String, Edge> allEdgelinks, int mode) {
 		
 		
 		for(Traffic tr1:allTraffic){
@@ -152,7 +152,14 @@ public class sumlinks {
 		    
 		    Totaltraffic=Totaltraffic/1000;//convert to Mbps and assign to nearest 100 gbps
 		    int rounded=(int)Totaltraffic;
-		    edgeit.setCapacity(rounded);
+		    if (rounded==0){
+		    	rounded+=1;
+		    }
+		    //Assign capacity for design,check capacity for test
+		    if(mode==1){
+		      edgeit.setCapacity(5*rounded);	
+		    }
+		    
 		    rounded =  (((rounded + 99) / 100 ) * 100);
 		    cost+=(rounded/100)*(100+0.1*edgeit.getCost());
 		    

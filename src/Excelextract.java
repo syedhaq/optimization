@@ -210,12 +210,37 @@ public class Excelextract {
 			
 			//Assign traffic to links
 			Dijkstra.ospf(new ArrayList<Node>(allNodes.values()));
-			sumlinks.addtraffic(allTraffic,edgetoback,allNodes,allEdgelinks);
+			
+			//Test
+			HashMap<String, Edge> design=sumlinks.addtraffic(allTraffic,edgetoback,allNodes,allEdgelinks,1);
 			ArrayList<Node>path=new ArrayList<Node>();
+			double failurecount=0;
 			 //path=Dijkstra.pathInfo.get(allNodes.get("O6")).get(allNodes.get("O11"));
-			for(Node n:path){
-				System.out.println(n.getName());
+			
+			for (Edge etest:design.values()){
+				HashMap<String, Edge> test=(HashMap)design.clone();
+				test.remove(etest.getEnd().getName()+etest.getStartnode().getName());
+				test.remove(etest.getStartnode().getName()+etest.getEnd().getName());
+				HashMap<String,Node>newnodes=(HashMap)allNodes.clone();
+				//Remove links
+				newnodes.get(etest.getStartnode().getName()).removeNeighbors(etest);
+				HashMap<String,Edge>newDesign=sumlinks.addtraffic(allTraffic,edgetoback,newnodes,test,0);
+				
+				for(Edge newedge:newDesign.values()){
+					if(newedge.getTrafficp1()+newedge.getTrafficp2()>design.get(newedge.getStartnode().getName()+newedge.getEnd().getName()).getCapacity()){
+						System.out.println("Failure at removing link");
+						failurecount++;
+						break;
+					}
+					
+					
+				}
+				
+				
 			}
+			System.out.println("Total failures:"+failurecount);
+			
+			
 			
 			
 			
