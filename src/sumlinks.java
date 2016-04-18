@@ -157,7 +157,7 @@ public class sumlinks {
 		    }
 		    //Assign capacity for design,check capacity for test
 		    if(mode==1){
-		      edgeit.setCapacity(5*rounded);	
+		      edgeit.setCapacity(2000*rounded);	
 		    }
 		    
 		    rounded =  (((rounded + 99) / 100 ) * 100);
@@ -170,8 +170,10 @@ public class sumlinks {
 		    System.out.println("Capacity assigned:"+rounded);
 		    	
 			}
+		if(mode==1){
+			System.out.println("Overall cost of network is:"+cost);
+		}
 		
-		System.out.println("Overall cost of network is:"+cost);
 		
 		return usedEdges;
 		

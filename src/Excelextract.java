@@ -224,6 +224,7 @@ public class Excelextract {
 				HashMap<String,Node>newnodes=(HashMap)allNodes.clone();
 				//Remove links
 				newnodes.get(etest.getStartnode().getName()).removeNeighbors(etest);
+				Dijkstra.ospf(new ArrayList<Node>(newnodes.values()));
 				HashMap<String,Edge>newDesign=sumlinks.addtraffic(allTraffic,edgetoback,newnodes,test,0);
 				
 				for(Edge newedge:newDesign.values()){
