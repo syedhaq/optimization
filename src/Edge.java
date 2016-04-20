@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 
 
 public class Edge {
@@ -6,7 +7,7 @@ public class Edge {
 	private Node end;
 	private double cost;
 	private double time;
-	private ArrayList<Traffic> trafar=new ArrayList<Traffic>();
+	private HashSet<Traffic> trafar=new HashSet<Traffic>();
 	private int capacity;
 	private double trafficp1;
 	private double trafficp2;
@@ -17,8 +18,6 @@ public class Edge {
 		setEnd(endnode);
 		setCost(costn);
 		setTime(time);
-		
-		
 		
 	}
 
@@ -55,7 +54,8 @@ public class Edge {
 	}
 
 	public ArrayList<Traffic> getTraffic() {
-		return trafar;
+		
+		return new ArrayList<Traffic>(trafar);
 	}
 
 	public Edge setTraffic(Traffic tr) {
@@ -77,7 +77,7 @@ public class Edge {
 		trafficp1=0; 
 		for(Traffic tr:this.getTraffic()){
 	    	//Get both priority 1 and priority two traffic
-	    	trafficp1+=tr.getP1();
+	    	trafficp1 += tr.getP1();
 	    	
 	    }
 		return trafficp1/1000;
@@ -92,5 +92,5 @@ public class Edge {
 	    }
 		return trafficp2/1000;
 	
-	                           }
+	}
 }

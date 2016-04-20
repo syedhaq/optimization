@@ -16,6 +16,7 @@ public class sumlinks {
 			ArrayList<edgetoBB> edgetoback,
 			 HashMap<String, Node> allNodes,HashMap<String, Edge> allEdgelinks, int mode) {
 		
+		cost = 0;
 		
 		for(Traffic tr1:allTraffic){
 			ArrayList<Node>srcnodes=new ArrayList<Node>();
@@ -144,9 +145,9 @@ public class sumlinks {
 		    String key = entry.getKey();
 		    Edge edgeit = entry.getValue();
 		    double Totaltraffic = 0;
-		    for(Traffic tr:edgeit.getTraffic()){
+		    for(Traffic tr : edgeit.getTraffic()){
 		    	//Get both priority 1 and priority two traffic
-		    	Totaltraffic+=tr.getP1()+tr.getP2();
+		    	Totaltraffic += tr.getP1()+ 0.5 * tr.getP2();
 		    	
 		    }
 		    
@@ -157,7 +158,7 @@ public class sumlinks {
 		    }
 		    //Assign capacity for design,check capacity for test
 		    if(mode==1){
-		      edgeit.setCapacity(2000*rounded);	
+		      edgeit.setCapacity(1 * rounded);	
 		    }
 		    
 		    rounded =  (((rounded + 99) / 100 ) * 100);
@@ -165,15 +166,15 @@ public class sumlinks {
 		    
 		    
 		    
-		    System.out.println(key);
-		    System.out.println("Traffic:"+Totaltraffic);
-		    System.out.println("Capacity assigned:"+rounded);
+		    //System.out.println(key);
+		    //System.out.println("Traffic:"+Totaltraffic);
+		    //System.out.println("Capacity assigned:"+rounded);
 		    	
 			}
-		if(mode==1){
-			System.out.println("Overall cost of network is:"+cost);
-		}
-		
+//		if(mode==1){
+//			System.out.println("Overall cost of network is:"+cost);
+//		}
+		System.out.println("Overall cost of network is:"+cost);
 		
 		return usedEdges;
 		
@@ -232,8 +233,8 @@ public class sumlinks {
 				}
 				else{
 					//Assign traffic to edge and put in used edge
-					usedEdges.put(minstart.getName()+path.get(i).getName(), allEdgelinks.get(minstart.getName()+path.get(i).getName()).setTraffic(tr1));
 					
+					usedEdges.put(minstart.getName()+path.get(i).getName(), allEdgelinks.get(minstart.getName()+path.get(i).getName()).setTraffic(tr1));	
 					
 				}
 			}
@@ -245,6 +246,7 @@ public class sumlinks {
 				}
 				else{
 					//Add edge to used links
+					
 					usedEdges.put(path.get(i).getName()+path.get(i+1).getName(), allEdgelinks.get(path.get(i).getName()+path.get(i+1).getName()).setTraffic(tr1));
 					
 					
@@ -257,9 +259,5 @@ public class sumlinks {
 		
 		return ;
 	}
-
-		
-	
-	
 
 }
