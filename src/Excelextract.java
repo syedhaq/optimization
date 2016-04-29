@@ -17,7 +17,8 @@ public class Excelextract {
 		ArrayList<Edgerouter>allEdges=new ArrayList<Edgerouter>();
 		ArrayList<Optical_backbone_links>allLinks=new ArrayList<Optical_backbone_links>();
 		ArrayList<edgetoBB>edgetoback=new ArrayList<edgetoBB>();
-		ArrayList<Traffic>allTraffic=new ArrayList<Traffic>();
+		HashMap <Double, ArrayList<Traffic>> allTrafficMap=new HashMap<>();
+		
 		//ArrayList<Node>allNodes=new ArrayList<Node>();
 		HashMap<String, Node> allNodes = new HashMap<>();
 		HashMap<String,Edge> allEdgelinks=new HashMap<>();
@@ -124,13 +125,15 @@ public class Excelextract {
 				
 				//System.out.println(tr1.getSource());
 				//Only get 0 traffic for now
-				if(tr1.getHour()!=0){
-					break;
+//				if(tr1.getHour()!=0){
+//					break;
+//				}
+				
+				
+				if(!allTrafficMap.containsKey(tr1.getHour())){
+					allTrafficMap.put(tr1.getHour(), new ArrayList<Traffic>());
 				}
-				allTraffic.add(tr1);
-				
-			
-				
+				allTrafficMap.get(tr1.getHour()).add(tr1);
 				
 			}
 			
@@ -212,54 +215,52 @@ public class Excelextract {
 			Dijkstra.ospf(new ArrayList<Node>(allNodes.values()));
 			
 			//Test
-			HashMap<String, Edge> design=sumlinks.addtraffic(allTraffic,edgetoback,allNodes,allEdgelinks,1);
-			ArrayList<Node>path=new ArrayList<Node>();
 			double failurecount=0;
-			//path=Dijkstra.pathInfo.get(allNodes.get("O6")).get(allNodes.get("O11"));
-			
-			for (Edge etest:design.values()){
-				HashMap<String, Edge> test=(HashMap)design.clone();
-				test.remove(etest.getEnd().getName()+etest.getStartnode().getName());
-				test.remove(etest.getStartnode().getName()+etest.getEnd().getName());
-				HashMap<String,Node>newnodes=(HashMap)allNodes.clone();
-				//Remove links
-				newnodes.get(etest.getStartnode().getName()).removeNeighbors(etest);
-				Dijkstra.ospf(new ArrayList<Node>(newnodes.values()));
-				HashMap<String,Edge>newDesign=sumlinks.addtraffic(allTraffic,edgetoback,newnodes,test,0);
+			for(Double d : allTrafficMap.keySet()){
+				ArrayList<Traffic> allTraffic = allTrafficMap.get(d);
+				HashMap<String, Edge> design=sumlinks.addtraffic(allTraffic,edgetoback,allNodes,allEdgelinks,1);
+				ArrayList<Node>path=new ArrayList<Node>();
 				
-				for(Edge newedge:newDesign.values()){
-					double old = design.get(newedge.getStartnode().getName()+newedge.getEnd().getName()).getCapacity();
-					double newTraffic = newedge.getTrafficp1() + newedge.getTrafficp2();
-					if(newTraffic > old){
-						design.get(newedge.getStartnode().getName()+newedge.getEnd().getName()).setCapacity((int)(newTraffic+ old));
+				//path=Dijkstra.pathInfo.get(allNodes.get("O6")).get(allNodes.get("O11"));
+				
+				for (Edge etest:design.values()){
+					HashMap<String, Edge> test=(HashMap)design.clone();
+					test.remove(etest.getEnd().getName()+etest.getStartnode().getName());
+					test.remove(etest.getStartnode().getName()+etest.getEnd().getName());
+					HashMap<String,Node>newnodes=(HashMap)allNodes.clone();
+					//Remove links
+					newnodes.get(etest.getStartnode().getName()).removeNeighbors(etest);
+					Dijkstra.ospf(new ArrayList<Node>(newnodes.values()));
+					HashMap<String,Edge>newDesign=sumlinks.addtraffic(allTraffic,edgetoback,newnodes,test,0);
+					
+					for(Edge newedge:newDesign.values()){
+						double old = design.get(newedge.getStartnode().getName()+newedge.getEnd().getName()).getCapacity();
+						double newTraffic = newedge.getTrafficp1() + newedge.getTrafficp2();
+						if(newTraffic > old){
+							design.get(newedge.getStartnode().getName()+newedge.getEnd().getName()).setCapacity((int)(newTraffic+ old));
+						}
 					}
 				}
-			}
-			
-			for (Edge etest:design.values()){
-				HashMap<String, Edge> test=(HashMap)design.clone();
-				test.remove(etest.getEnd().getName()+etest.getStartnode().getName());
-				test.remove(etest.getStartnode().getName()+etest.getEnd().getName());
-				HashMap<String,Node>newnodes=(HashMap)allNodes.clone();
-				//Remove links
-				newnodes.get(etest.getStartnode().getName()).removeNeighbors(etest);
-				Dijkstra.ospf(new ArrayList<Node>(newnodes.values()));
-				HashMap<String,Edge> newDesign = sumlinks.addtraffic(allTraffic,edgetoback,newnodes,test,0);
 				
-				for(Edge newedge:newDesign.values()){
-					double old = design.get(newedge.getStartnode().getName()+newedge.getEnd().getName()).getCapacity();
-					double newTraffic = newedge.getTrafficp1() + newedge.getTrafficp2();
+				for (Edge etest:design.values()){
+					HashMap<String, Edge> test=(HashMap)design.clone();
+					test.remove(etest.getEnd().getName()+etest.getStartnode().getName());
+					test.remove(etest.getStartnode().getName()+etest.getEnd().getName());
+					HashMap<String,Node>newnodes=(HashMap)allNodes.clone();
+					//Remove links
+					newnodes.get(etest.getStartnode().getName()).removeNeighbors(etest);
+					Dijkstra.ospf(new ArrayList<Node>(newnodes.values()));
+					HashMap<String,Edge> newDesign = sumlinks.addtraffic(allTraffic,edgetoback,newnodes,test,0);
 					
-					//System.out.println("hhh " + newedge.getStartnode().getName());
-					//System.out.println("aaa "+ newedge.getEnd().getName());
-//					if(newedge.getStartnode().getName().equals("O12") && newedge.getEnd().getName().equals("O1")){
-//						System.out.println("hhh " + old );
-//						System.out.println("aaa " + newTraffic );
-//					}
-					if(newTraffic > old){
-						design.get(newedge.getStartnode().getName()+newedge.getEnd().getName()).setCapacity((int)(newTraffic+ old));
-						failurecount++;
-						break;
+					for(Edge newedge:newDesign.values()){
+						double old = design.get(newedge.getStartnode().getName()+newedge.getEnd().getName()).getCapacity();
+						double newTraffic = newedge.getTrafficp1() + newedge.getTrafficp2();
+						
+						if(newTraffic > old){
+							design.get(newedge.getStartnode().getName()+newedge.getEnd().getName()).setCapacity((int)(newTraffic+ old));
+							failurecount++;
+							break;
+						}
 					}
 				}
 			}
